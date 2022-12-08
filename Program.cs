@@ -4,24 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StaticVsInstanceApp
+namespace ReadIntegerApp
 {
-    class StaticVsInstanceField
-    {
-        public int instanceVariable;
-	    public static int staticVariable;
-    }
-
     class Program
     {
+        static int ReadInt() 
+	    {
+		    char ch;
+		    int n=0;
+		    while (!char.IsDigit(ch = (char)Console.Read()));
+		    do 
+		    {
+			    n = n*10 + (ch - '0');
+			    ch = (char) Console.Read();
+		    } while (char.IsDigit(ch));
+		    return n;
+	    }
         static void Main(string[] args)
         {
-            StaticVsInstanceField obj = new StaticVsInstanceField();
-		    obj.instanceVariable = 10;                      // ok
-		    //StaticVsInstanceField.instanceVariable = 10;  // error
-		    StaticVsInstanceField.staticVariable = 20;      // ok
-		    //obj.staticVariable = 20;                      // error
-		    Console.WriteLine("instance variable={0}, static variable={1}", obj.instanceVariable, StaticVsInstanceField.staticVariable);
+            Console.Write("*** input data : ");
+			Console.WriteLine("*** read data : " +	ReadInt() + " " + ReadInt());
         }
     }
 }
