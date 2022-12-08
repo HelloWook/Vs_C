@@ -4,24 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FractionApp
+namespace StaticVsInstanceApp
 {
-    class Fraction
+    class StaticVsInstanceField
     {
-        int numerator;                              // 분자 필드
-        int denominator;                            // 분모 필드
-        public Fraction(int num, int denom) {       // 생성자
-            numerator = num;
-            denominator = denom;
-        }
-        public void PrintFraction() {               // 출력 메소드
-            Console.WriteLine(numerator + "/" + denominator);
-        }
+        public int instanceVariable;
+	    public static int staticVariable;
     }
-    class Program {
-        static void Main(string[] args) {
-            Fraction f = new Fraction(1, 2);
-            f.PrintFraction();
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            StaticVsInstanceField obj = new StaticVsInstanceField();
+		    obj.instanceVariable = 10;                      // ok
+		    //StaticVsInstanceField.instanceVariable = 10;  // error
+		    StaticVsInstanceField.staticVariable = 20;      // ok
+		    //obj.staticVariable = 20;                      // error
+		    Console.WriteLine("instance variable={0}, static variable={1}", obj.instanceVariable, StaticVsInstanceField.staticVariable);
         }
     }
 }
